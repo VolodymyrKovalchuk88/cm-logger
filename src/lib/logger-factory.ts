@@ -51,8 +51,8 @@ export class LoggerFactory {
     }
 
     private static getConfig(name: string): { level: LevelEnum; targets: Array<Target>; } {
-        for (
-            const [pattern, config] of LoggerConfiguration.config) {
+        // We use order and regex to find a matching configuration. 
+        for (const [pattern, config] of LoggerConfiguration.config) {
             const regex = new RegExp(pattern);
             if (regex.test(name)) {
                 return config;
